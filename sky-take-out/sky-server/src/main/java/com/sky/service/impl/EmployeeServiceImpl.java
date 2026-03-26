@@ -1,27 +1,29 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.context.BaseContext;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
+import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
 import com.sky.exception.AccountLockedException;
 import com.sky.exception.AccountNotFoundException;
 import com.sky.exception.PasswordErrorException;
 import com.sky.mapper.EmployeeMapper;
+import com.sky.result.PageResult;
 import com.sky.service.EmployeeService;
 
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ansi.AnsiOutput;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -122,6 +124,32 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
+    //===================================================================
+    //下面这个就是员工分页查询的代码
+    @Override
+    public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
+        //现在这里就是这里有name ,page,pagesize数据，然后要返回的是total,records的数据
+        //分别不就是模糊查询nam  e,页码，每一页一共几条数据，返回的是总的条数,还有点击每一条里面的数据
+        //本来应该是select * from employee limit 0,10从第一页开始，查询十条，然后有一个插件可以自动分页
+        //就是pageHelper
+        PageHelper.startPage(employeePageQueryDTO.getPage(),employeePageQueryDTO.getPageSize());
+        //这个就是往里面设定两个值，第一个就是实体类里面的page页数，第二个不就是里面的每一页有多少条
+        //那么实体类里面的 name还有怎么显示employee的信息，这个就是在插件pagehelper的返回值里面
+        //太厉害了 ,！！！！！注意name在这里就是一个模糊查询.
+        //下一步就是在mapper里面写查询语句
+        Page<Employee> page=employeeMapper.pageQuery(employeePageQueryDTO);
+        //我刚才的插件不就是在里面设置了两个值，一个是页数，一个是每一页多少行
+        //然后还有模糊查询的name，还有employee信息就是放在插件的返回对象page<Employee>里面
+        //直接写sql语句就行，然后employeeMapper里面还要把含有页数和每页多少条数据，name的实体类
+        //传进去，左边就是含有员工信息的实体类，那么不就是都在里面
+
+        //我现在就是这个方法返回的是pageresult,那么我现在就是想如何将page转换为pageresult,然后返回出来
+        //我这个page里面就有两个方法可以获得pageresult里面的两个参数，直接调用，注意
+        //获取records是获得你实体类的所有数据，所以不是简单调用getrecords，而是getresult获得是集合里面就是employee的数据
+        long total = page.getTotal();
+        List<Employee> records = page.getResult();
+        return new PageResult(total,records);
+    }
 
 
 }

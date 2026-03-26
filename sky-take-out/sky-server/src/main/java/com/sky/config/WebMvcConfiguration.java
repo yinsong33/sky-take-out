@@ -1,10 +1,14 @@
 package com.sky.config;
 
 import com.sky.interceptor.JwtTokenAdminInterceptor;
+import com.sky.json.JacksonObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -14,6 +18,8 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+
+import java.util.List;
 
 /**
  * 配置类，注册web层相关组件
@@ -65,4 +71,30 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+
+
+    //这个方法就是，在员工页面查询的时候，上面展示的就是标准的时间格式，其实这一步就是扩展springmvc的消息转换
+    //其实也就是规定时间格式
+    //下面这个是第二种，然后还有一种就是直接在employee里面在createtime里面加那个注解，也行
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //    private LocalDateTime createTime;
+    @Override
+    protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        MappingJackson2HttpMessageConverter converter=new MappingJackson2HttpMessageConverter();
+        converter.setObjectMapper(new JacksonObjectMapper());
+        converters.add(0,converter);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

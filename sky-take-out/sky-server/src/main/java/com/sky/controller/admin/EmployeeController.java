@@ -3,8 +3,10 @@ package com.sky.controller.admin;
 import com.sky.constant.JwtClaimsConstant;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
+import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
 import com.sky.properties.JwtProperties;
+import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
@@ -93,12 +95,27 @@ public class EmployeeController {
         //注意啊我这里不就是想调用service里面的那个类吗@Autowired
         //    private EmployeeService employeeService;
         //注意这个是employService 不是EmpolyeeService,这个接口的方法，注意一下
-
         employeeService.save(employeeDTO);
-
         return Result.success();//这个意思就是返回成功,后端返回给前端
+         }
 
-     }
+
+         //============================================================
+    //下面就是员工分页查询的代码，我们在写代码的时候，要求都在apidox里面，我们根据里面的要求
+    //什么get还是post请求方式啊，前端给你返回的是什么类型啊，就是参数都是已经准备好在pojo里面了
+    //都是实体类，然后你要判断前端给你的是什么类型就行，如果是json你就转换为dto,用requestbody，
+    //如果是query参数，你就在实体类里面找employeepagequerydto就行了，就不用加requestbody
+    //然后还有一点，看右边实例你就能确定是什么格式了code message,data这个不就是result格式
+    //然后data里面还有total,records，这个不就是返回类型是pageresult，然后就是result<pageresult>
+    //两个就联系在一起，然后records里面不就是employee实体类参数，其实也就是员工分页查询的信息
+
+     @GetMapping("page")//这个看要求，上面已经有了，requestmapping后面有一个路径，然后
+     //你在看接口文档，后面跟了一个page，那么这个请求方式就把page带着.
+    public Result<PageResult> page (EmployeePageQueryDTO employeePageQueryDTO){
+        PageResult pageResult=employeeService.pageQuery(employeePageQueryDTO);
+        return Result.success(pageResult);
+
+    }
 
 
 
