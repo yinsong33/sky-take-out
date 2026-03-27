@@ -134,6 +134,31 @@ public class EmployeeController {
 
     }
 
+    //=========================================================================================
+    //注意在编辑信息的前面还有一个先获得员工的id，你才能获得，然后要求看接口文档
+     //那你根据id查信息，那么你就要先获得id，这个id是在你的get请求路径中
+    @GetMapping("/{id}")
+    //你要想我获取id的目的不就是，为了获取员工的信息，这个就是service需要返回的
+    public Result<Employee> getById(@PathVariable long id){
+        Employee employee=employeeService.getById(id);
+        //我现在看我想返回的是data里面员工的信息，那我就在前面加一个employee对象的返回值，意思我service返回的就是
+        //employee对象
+        return Result.success(employee);
+    }
+
+
+    //=======================================================================
+    //下面就是员工的编辑信息
+    @PutMapping
+    public Result updateEmployee(@RequestBody EmployeeDTO employeeDTO){
+         employeeService.updateEmployee(employeeDTO);
+         return Result.success();
+
+    }
+    //=====================================================================================
+    //！！！！！！！！！！！注意你要想修改员工的数据，那么你就要先获得员工的id，根据员工的Id来进行编辑
+
+
 
 
 }

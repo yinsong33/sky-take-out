@@ -35,6 +35,14 @@ public interface EmployeeMapper {
     //这个就是员工启动和禁用
 
 
+    void updateEmployee(Employee employee);
+    //这个就是编辑员工信息
+
+
+    @Select("select * from employee where id=#{id}")
+    Employee getById(long id);
+    //这个就是根据id查询员工信息
+
 
 
 

@@ -174,5 +174,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    //下面这个就是编辑员工信息
+    @Override
+    public void updateEmployee(EmployeeDTO employeeDTO) {
+         Employee employee=new Employee();
+         BeanUtils.copyProperties(employeeDTO,employee);
+         //这个是把dto数据，也就是要修改的数据先给到employee，然后把里面剩余的设置常量
+        employee.setUpdateTime(LocalDateTime.now());
+        //下面这两个还是一样，threadlocal,提供容器，获取实时信息
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.updateEmployee(employee);
+    }
+//=====================================================================
+    //下面这个就是根据员工Id，获取员工信息
+    @Override
+    public Employee getById(long id) {
+        Employee employee=employeeMapper.getById(id);
+        employee.setPassword("****");
+        return employee;
+    }
+
 
 }

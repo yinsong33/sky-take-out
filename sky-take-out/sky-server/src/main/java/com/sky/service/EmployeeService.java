@@ -27,4 +27,9 @@ public interface EmployeeService {
     //这个启用和禁用账号
     void startOrLimit(Integer status, long id);
 
+    //这个就是编辑员工信息
+    void updateEmployee(EmployeeDTO employeeDTO);
+
+    Employee getById(long id);
+    //这个就是根据id来查询员工信息，用来获取并且编辑
 }

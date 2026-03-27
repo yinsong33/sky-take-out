@@ -17,7 +17,8 @@
         </where>
         order by create_time desc
     </select>
-<!-- 这个是分页查询-->
+    <!-- 这个是分页查询-->
+
 
 
 
@@ -38,6 +39,24 @@
     </update>
     <!--这个是员工启动和禁用-->
     <!--#{id},#{status},这个就是全局变量，也就是变量的，动态会变得，也就是你自己输入的-->
+
+
+
+    <update id="updateEmployee" parameterType="com.sky.entity.Employee">
+        update employee
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="idNumber != null">id_number = #{idNumber},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+        </set>
+        where id = #{id}
+    </update>
+<!-- 这个是编辑员工信息-->
+
 
 
 
