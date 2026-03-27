@@ -31,5 +31,11 @@ public interface EmployeeMapper {
     //在这个接口对应的映射文件里写就行，
 
 
+    void startOrLimit(Employee employee);
+    //这个就是员工启动和禁用
+
+
+
+
 
 }

@@ -18,9 +18,13 @@ public interface EmployeeService {
      */
     Employee login(EmployeeLoginDTO employeeLoginDTO);
 
+    //这个是添加员工
     void save(EmployeeDTO employeeDTO);
 
-
+    //这个是页面查询
     PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    //这个启用和禁用账号
+    void startOrLimit(Integer status, long id);
 
 }

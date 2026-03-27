@@ -17,13 +17,16 @@ import com.sky.mapper.EmployeeMapper;
 import com.sky.result.PageResult;
 import com.sky.service.EmployeeService;
 
+import lombok.Builder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -149,6 +152,26 @@ public class EmployeeServiceImpl implements EmployeeService {
         long total = page.getTotal();
         List<Employee> records = page.getResult();
         return new PageResult(total,records);
+    }
+
+
+    //==========================================================================
+    //下面这个就是启用和禁用员工账号
+    @Override
+    public void startOrLimit(Integer status, long id) {
+        //这里就是获得了id,和状态，但是注意一个细节就是这两个是传过来的数据，你总不能把这两个陌生的变量
+        //直接传给数据库吧，所以你要先把这两个值赋值给employee实体类，这个才是与数据库对应的
+        //Employee employee=new Employee();
+        //employee.setStatus(status);
+        //employee.setId(id);
+        //然后这个是一种方法，然后因为现在这种实体类里面不是有工具包吗 ，像什么@data,@NoArgsConstructor,@AllArgsConstru
+        // ctor，还有一个@Builder 前面三个就是数据，全参构，无参构造，，这些分别就是值，下面的get,set
+        // 那么这个builder这个就是调用里面的变量
+        Employee employee = Employee.builder().status(status).id(id).build();
+        //这个就是@builder的用法，先是调用实体类里面的builder方法，然后调用你要哪儿两个对象，把值赋值进去，最后再来一个build
+        employeeMapper.startOrLimit(employee);
+
+
     }
 
 

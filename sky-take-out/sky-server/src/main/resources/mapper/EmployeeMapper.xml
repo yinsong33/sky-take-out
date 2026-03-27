@@ -4,6 +4,10 @@
 
 <mapper namespace="com.sky.mapper.EmployeeMapper">
 
+
+
+
+
     <select id="pageQuery" resultType="com.sky.entity.Employee">
         select * from employee
         <where>
@@ -13,5 +17,36 @@
         </where>
         order by create_time desc
     </select>
+<!-- 这个是分页查询-->
+
+
+
+    <update id="startOrLimit" parameterType="com.sky.entity.Employee">
+        update employee
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="idNumber != null">id_Number = #{idNumber},</if>
+            <if test="updateTime != null">update_Time = #{updateTime},</if>
+            <if test="updateUser != null">update_User = #{updateUser},</if>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!--这个是员工启动和禁用-->
+    <!--#{id},#{status},这个就是全局变量，也就是变量的，动态会变得，也就是你自己输入的-->
+
+
+
+
+
+
+
 
 </mapper>
+
+
+

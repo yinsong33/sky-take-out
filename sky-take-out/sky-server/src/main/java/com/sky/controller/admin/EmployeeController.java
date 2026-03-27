@@ -118,5 +118,22 @@ public class EmployeeController {
     }
 
 
+    //=============================================================================
+    //接下来就是写员工禁用与启用的方法，这里我们还是跟上面一样，但是有一个细节就是，他这个有一个路径参数
+    //就是你@postmapping的时候后面不是写一个status吗，后面就会跟一个参数(status),这个里面就是1是启动
+    //0是禁用
+
+    //然后这个里面就是写方法，里面传入两个参数，一个是路径参数，一个就是用户的id
+    //然后路径参数要用一个注解@pathvariable，然后这个就是传路径的意思，然后右边把参数写上去，同时第二个参数就是id
+
+    @PostMapping("/status/{status}")
+    public Result startOrLimit(@PathVariable Integer status,long id){
+          //因为返回值就是一个简单的返回信息，所以直接result.success
+        employeeService.startOrLimit(status,id);
+        return  Result.success();
+
+    }
+
+
 
 }
