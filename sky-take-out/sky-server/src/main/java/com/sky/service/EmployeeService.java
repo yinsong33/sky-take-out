@@ -1,5 +1,6 @@
 package com.sky.service;
 
+import com.sky.dto.CategoryDTO;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
@@ -32,4 +33,7 @@ public interface EmployeeService {
 
     Employee getById(long id);
     //这个就是根据id来查询员工信息，用来获取并且编辑
+
+
+
 }
