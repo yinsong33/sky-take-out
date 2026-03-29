@@ -34,19 +34,19 @@ public class CategoryController {
 
     //下面这个就是分类分页
     @GetMapping("/page")
-    public Result<PageResult> page(CategoryPageQueryDTO categoryPageQueryDTO){
+    public Result<PageResult> page(@ModelAttribute CategoryPageQueryDTO categoryPageQueryDTO){
          PageResult pageResult=categoryService.page(categoryPageQueryDTO);
         return Result.success(pageResult);
     }
 
     @PostMapping("/status/{status}")
-    public Result startOrLimit(@PathVariable Integer status,long id){
+    public Result startOrLimit(@PathVariable Integer status, Long id){
         categoryService.startOrLimit(status,id);
         return Result.success();
     }
 
     @DeleteMapping
-    public Result delete(long id){
+    public Result delete(Long id){
         categoryService.delete(id);
         return Result.success();
 

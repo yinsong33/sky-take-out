@@ -104,12 +104,13 @@ public class EmployeeServiceImpl implements EmployeeService {
          employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));//这个是加密之后的密码
          //而且这个是定义了一个常量，在sky-common里面的passwordconstatnt里面的常量,其实还是就是123456
 
-         employee.setCreateTime(LocalDateTime.now());
-         employee.setUpdateTime(LocalDateTime.now());
+        // employee.setCreateTime(LocalDateTime.now());
+         //employee.setUpdateTime(LocalDateTime.now());
 
 
-         employee.setCreateUser(BaseContext.getCurrentId());
-         employee.setUpdateUser(BaseContext.getCurrentId());
+        // employee.setCreateUser(BaseContext.getCurrentId());
+         //employee.setUpdateUser(BaseContext.getCurrentId());
+
          //这个是建议不能设定成固定值，这边应该是动态获取在这里的id，然后setupdateuser里面的值最好与id动态变化
          //其实这里的意思就是，我登陆的时候以id，username登陆就会生成token,然后通过的时候就会被拦截器阻拦
          //用来校验，然后我就是想这个时候来解析，然后获取到id,然后再service层里面把updatauser与id值一样，
@@ -182,9 +183,9 @@ public class EmployeeServiceImpl implements EmployeeService {
          Employee employee=new Employee();
          BeanUtils.copyProperties(employeeDTO,employee);
          //这个是把dto数据，也就是要修改的数据先给到employee，然后把里面剩余的设置常量
-        employee.setUpdateTime(LocalDateTime.now());
+        //employee.setUpdateTime(LocalDateTime.now());
         //下面这两个还是一样，threadlocal,提供容器，获取实时信息
-        employee.setUpdateUser(BaseContext.getCurrentId());
+       // employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.updateEmployee(employee);
     }
 //=====================================================================
