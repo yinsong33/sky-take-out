@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 09 18:20:28 CST 2026
+maven-jar-plugin-3.4.1.jar>central=
+maven-jar-plugin-3.4.1.jar>public=
+maven-jar-plugin-3.4.1.pom>central=
+maven-jar-plugin-3.4.1.pom>public=

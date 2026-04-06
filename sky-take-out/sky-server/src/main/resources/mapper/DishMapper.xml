@@ -11,4 +11,50 @@
         (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser}, #{status})
     </insert>
 
+    <update id="update" >
+        update dish
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+
+    <delete id="deleteByIds">
+        delete from dish where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="page" resultType="com.sky.vo.DishVO">
+       select d.* , c.name as categoryName from dish d left outer join category c on d.category_id = c.id
+        <where>
+            <if test="name != null and name != ''">
+                and d.name like concat('%',#{name},'%')
+            </if>
+            <if test="categoryId != null">
+                and d.category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and d.status = #{status}
+            </if>
+
+        </where>
+        order by d.create_time desc
+    </select>
+
+    <!--这个就是我在查询dish这个菜品的时候，会把他对应的分类名称，就是在category分类表里面对应的名称，显示出来-->
+<!--注意一个细节就是我那个dishVo 那个实体类里面是categoryName,但是我category这张表里面是name,所以要起一个别名，与实体类对应-->
+<!--然后就是我这是分页查询，然后dishDto里面的两个属性已经通过工具类搞好了，所以剩余三个就是where 条件查询-->
+
+
 </mapper>

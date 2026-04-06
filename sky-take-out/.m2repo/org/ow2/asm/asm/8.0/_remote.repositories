@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 23 17:29:31 CST 2026
+asm-8.0.jar>central=
+asm-8.0.jar>public=
+asm-8.0.pom>central=
+asm-8.0.pom>public=

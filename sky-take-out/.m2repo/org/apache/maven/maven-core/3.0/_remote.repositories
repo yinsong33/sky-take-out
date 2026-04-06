@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 23 17:29:31 CST 2026
+maven-core-3.0.jar>central=
+maven-core-3.0.jar>public=
+maven-core-3.0.pom>central=
+maven-core-3.0.pom>public=

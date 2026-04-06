@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 09 18:20:40 CST 2026
+maven-artifact-3.1.1.jar>public=
+maven-artifact-3.1.1.pom>central=
+maven-artifact-3.1.1.pom>public=

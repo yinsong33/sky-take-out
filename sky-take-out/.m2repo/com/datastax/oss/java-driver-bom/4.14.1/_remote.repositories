@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 30 11:14:31 CST 2026
+java-driver-bom-4.14.1.pom>central=
+java-driver-bom-4.14.1.pom>public=
+java-driver-bom-4.14.1.pom>alimaven=

@@ -1,0 +1,13 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 23 17:29:06 CST 2026
+@default-spring-libs-release-https\://repo.spring.io/libs-release/.lastUpdated=1774255491995
+@default-spring-libs-snapshot-https\://repo.spring.io/libs-snapshot/.lastUpdated=1774255492233
+https\://oss.sonatype.org/content/repositories/snapshots/.error=
+https\://oss.sonatype.org/content/repositories/snapshots/.lastUpdated=1774255507667
+https\://repo.maven.apache.org/maven2/.lastUpdated=1774258146323
+https\://repo.spring.io/libs-release/.error=Could not transfer artifact org.springframework\:spring-core\:jar\:5.3.22 from/to spring-libs-release (https\://repo.spring.io/libs-release)\: status code\: 401, reason phrase\:  (401)
+https\://repo.spring.io/libs-snapshot/.error=Could not transfer artifact org.springframework\:spring-core\:jar\:5.3.22 from/to spring-libs-snapshot (https\://repo.spring.io/libs-snapshot)\: status code\: 401, reason phrase\:  (401)
+https\://repo.spring.io/milestone/.error=
+https\://repo.spring.io/milestone/.lastUpdated=1774255507909
+https\://repo.spring.io/snapshot/.error=
+https\://repo.spring.io/snapshot/.lastUpdated=1774255508155

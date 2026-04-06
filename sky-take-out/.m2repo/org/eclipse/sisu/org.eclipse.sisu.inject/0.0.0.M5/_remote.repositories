@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 23 17:13:36 CST 2026
+org.eclipse.sisu.inject-0.0.0.M5.jar>public=
+org.eclipse.sisu.inject-0.0.0.M5.pom>central=
+org.eclipse.sisu.inject-0.0.0.M5.pom>public=

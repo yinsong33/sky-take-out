@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Mar 23 17:29:31 CST 2026
+maven-shade-plugin-3.2.4.jar>central=
+maven-shade-plugin-3.2.4.jar>public=
+maven-shade-plugin-3.2.4.pom>central=
+maven-shade-plugin-3.2.4.pom>public=
